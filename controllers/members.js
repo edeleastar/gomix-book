@@ -3,24 +3,23 @@ const Controller = require('./controller');
 const User = require('../models/user');
 const datastore = require('../models/datastore');
 
-class Home extends Controller {
+class Members extends Controller {
 
   index(request, response) {
-    const loggedInUser = this.currentUser(request);
     const viewData = {
-      title: 'Spacebook Home',
-      user: loggedInUser,
-      messages: loggedInUser.getMessages(),
+      title: 'Spacebook Members',
+      user:  this.currentUser(request),
+      users: datastore.getUsers(),
     };
-    response.render('home/index', viewData);
+    response.render('members/index', viewData);
   }
 
-  drop(request, response) {
+  follow(request, response) {
     const currentUser = this.currentUser(request);
     const user = datastore.findUserById(request.params.id);
-    currentUser.removeFriend(user);
+    currentUser.addFriend(user);
     response.redirect('/home');
   }
 }
 
-module.exports = Home;
+module.exports = Members;

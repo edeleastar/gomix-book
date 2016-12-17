@@ -1,0 +1,15 @@
+{{> profilemenu }}
+
+<section class="ui raised segment">
+  <div class="ui dividing header"> {{user.firstName}} {{user.lastName}}'s Profile</div>
+  <section class="ui two column grid segment">
+    <div class="row">
+      <div class="column">
+        {{> listmessages }}
+      </div>
+      <div class="column">
+       {{> composemessage }}
+      </div>
+    </div>
+  </section>
+</section>

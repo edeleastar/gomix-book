@@ -1,0 +1,22 @@
+{{> mainmenu id='members'}}
+
+<table class="ui table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>follow</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each users}}
+      <tr>
+        <td>
+          {{firstName}} {{lastName}}
+        </td>
+        <td>
+          <a href="members/follow/{{id}}"> (follow) </a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

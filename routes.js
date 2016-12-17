@@ -1,15 +1,27 @@
 var express = require('express');
 var router = express.Router();
-const accounts = require('./controllers/accounts');
-const home = require('./controllers/home');
+const Accounts = require('./controllers/accounts');
+const Home = require('./controllers/home');
+const Members = require('./controllers/members');
+const Profile = require('./controllers/profile');
 
-router.get('/', accounts.index);
-router.get('/login', accounts.login);
-router.get('/signup', accounts.signup);
-router.get('/logout', accounts.logout);
-router.post('/register', accounts.register);
-router.post('/authenticate', accounts.authenticate);
+router.get('/', Accounts.index);
+router.get('/login', Accounts.login);
+router.get('/signup', Accounts.signup);
+router.get('/logout', Accounts.logout);
+router.post('/register', Accounts.register);
+router.post('/authenticate', Accounts.authenticate);
 
-router.get('/home', home.index);
+const home = new Home();
+router.get('/home', home.index.bind(home));
+router.get('/home/drop/:id', home.drop.bind(home));
+
+const members = new Members();
+router.get('/members', members.index.bind(members));
+router.get('/members/follow/:id',  members.follow.bind(members));
+
+const profile = new Profile();
+router.get('/profile/:id', profile.index.bind(profile));
+router.post('/profile/:id/sendmessage', profile.sendMessage.bind(profile));
 
 module.exports = router;

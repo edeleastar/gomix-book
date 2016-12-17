@@ -1,6 +1,14 @@
+const userData = require('./users.json');
+const User = require('./user');
+
 class Datastore {
   constructor() {
     this.users = [];
+
+    for (let userObj of userData) {
+      const user = new User(userObj);
+      this.users.push(user);
+    }
   }
 
   addUser(user) {
@@ -8,7 +16,7 @@ class Datastore {
     console.log('new user added ' + user.toString());
   }
 
-  findUser(email) {
+  findUserByEmail(email) {
     let foundUser = null;
     for (let user of this.users) {
       if (user.email === email) {
@@ -17,6 +25,21 @@ class Datastore {
     }
 
     return foundUser;
+  }
+
+  findUserById(id) {
+    let foundUser = null;
+    for (let user of this.users) {
+      if (user.id === id) {
+        foundUser = user;
+      }
+    }
+
+    return foundUser;
+  }
+
+  getUsers() {
+    return this.users;
   }
 }
 

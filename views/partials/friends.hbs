@@ -1,0 +1,11 @@
+<section class="ui raised segment">
+  <div class="ui small dividing header">Friends</div>
+  <div class="ui list">
+    {{#each user.friends}}
+      <div class="ui item">
+        <a href="/profile/{{id}}"> {{firstName}} {{lastName}}</a>
+        <a href="/home/drop/{{id}}"> (drop) </a>
+      </div>
+    {{/each}}
+  </div>
+</section>
