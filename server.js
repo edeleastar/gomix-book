@@ -1,8 +1,14 @@
 const express = require('express');
-const routes = require('./routes');
+var exphbs    = require('express-handlebars');
+const routes  = require('./routes');
 
 const app = express();
-app.set('view engine', 'ejs');
+app.engine('.hbs', exphbs({
+  extname: '.hbs',
+  defaultLayout: 'main',
+}));
+app.set('view engine', '.hbs');
+
 app.use(express.static('public'));
 app.use('/', routes);
 
