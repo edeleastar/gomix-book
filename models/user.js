@@ -18,6 +18,10 @@ class User {
     this.friends.push(user);
   }
 
+  getFriends() {
+    return this.friends;
+  }
+
   addPicture(picture) {
     this.picture = picture;
   }

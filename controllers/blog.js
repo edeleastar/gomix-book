@@ -8,11 +8,10 @@ class BlogController extends Controller {
 
   index(request, response) {
     const loggedInUser = this.currentUser(request);
-    const posts = loggedInUser.getBlog().posts;
     const viewData = {
       title: 'Blog',
       user: loggedInUser,
-      posts: posts,
+      posts: loggedInUser.getBlog().getPosts(),
     };
     response.render('blog', viewData);
   }

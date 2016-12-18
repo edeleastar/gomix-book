@@ -10,6 +10,7 @@ class Home extends Controller {
     const viewData = {
       title: 'Spacebook Home',
       user: loggedInUser,
+      friends: loggedInUser.getFriends(),
       messages: loggedInUser.getMessages(),
     };
     response.render('home', viewData);
