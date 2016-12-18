@@ -15,6 +15,8 @@ router.post('/authenticate', Accounts.authenticate);
 const home = new Home();
 router.get('/home', home.index.bind(home));
 router.get('/home/drop/:id', home.drop.bind(home));
+router.get('/home/getpicture/:id', home.getPicture.bind(home));
+router.post('/home/uploadpicture', home.uploadPicture.bind(home));
 
 const members = new Members();
 router.get('/members', members.index.bind(members));

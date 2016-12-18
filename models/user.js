@@ -16,6 +16,14 @@ class User {
     this.friends.push(user);
   }
 
+  addPicture(picture) {
+    this.picture = picture;
+  }
+
+  getPicture(picture) {
+    return this.picture;
+  }
+
   removeFriend(user) {
     this.friends = this.friends.filter(function (friend) {
       return friend.email !== user.email;

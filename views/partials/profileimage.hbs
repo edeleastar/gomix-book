@@ -1,0 +1,16 @@
+<section class="ui raised segment">
+  <div class="ui small header"> Profile Image </div>
+  <hr>
+  <div class="ui medium image">
+    <label class="ui ribbon label">Profile Image</label>
+    <img src="/home/getpicture/{{user.id}}">
+  </div>
+  <section class="ui raised form segment">
+    <form action="/home/uploadpicture" method="post" enctype="multipart/form-data">
+      <div class="ui field">
+        <input type="file" name="picture">  </input>
+      </div>
+      <button class="ui mini blue submit button"> Upload</button>
+    </form>
+  </section>
+</section>
