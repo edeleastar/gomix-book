@@ -1,5 +1,3 @@
-
-
 class User {
   constructor(userObj) {
     this.id = userObj.id;
@@ -10,6 +8,7 @@ class User {
 
     this.friends = [];
     this.messages = [];
+    this.picture = null;
   }
 
   addFriend(user) {

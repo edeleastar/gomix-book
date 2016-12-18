@@ -12,7 +12,7 @@ class Home extends Controller {
       user: loggedInUser,
       messages: loggedInUser.getMessages(),
     };
-    response.render('home/index', viewData);
+    response.render('home', viewData);
   }
 
   drop(request, response) {

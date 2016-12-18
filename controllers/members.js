@@ -11,7 +11,7 @@ class Members extends Controller {
       user:  this.currentUser(request),
       users: datastore.getUsers(),
     };
-    response.render('members/index', viewData);
+    response.render('members', viewData);
   }
 
   follow(request, response) {

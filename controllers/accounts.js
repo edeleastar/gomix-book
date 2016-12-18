@@ -8,14 +8,14 @@ class Accounts {
     const viewData = {
       title: 'Login or Signup',
     };
-    response.render('accounts/index', viewData);
+    response.render('index', viewData);
   }
 
   static login(request, response) {
     const viewData = {
       title: 'Login to the Service',
     };
-    response.render('accounts/login', viewData);
+    response.render('login', viewData);
   }
 
   static logout(request, response) {
@@ -27,7 +27,7 @@ class Accounts {
     const viewData = {
       title: 'Login to the Service',
     };
-    response.render('accounts/signup', viewData);
+    response.render('signup', viewData);
   }
 
   static register(request, response) {

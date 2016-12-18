@@ -13,7 +13,7 @@ class PublicProfile extends Controller {
       user: profileUser,
       messages: profileUser.getMessages(),
     };
-    response.render('profile/index', viewData);
+    response.render('profile', viewData);
   }
 
   sendMessage(request, response) {

@@ -7,11 +7,7 @@ const routes = require('./routes');
 
 const app = express();
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({
-  extended: false,
-//  keepExtensions: true,
-//  uploadDir: __dirname + '/public/uploads',
-}));
+app.use(bodyParser.urlencoded({ extended: false, }));
 app.use(fileUpload());
 app.engine('.hbs', exphbs({
   extname: '.hbs',
