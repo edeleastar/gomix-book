@@ -1,3 +1,5 @@
+const Blog = require('./blog');
+
 class User {
   constructor(userObj) {
     this.id = userObj.id;
@@ -9,6 +11,7 @@ class User {
     this.friends = [];
     this.messages = [];
     this.picture = null;
+    this.blog = new Blog(this);
   }
 
   addFriend(user) {
@@ -21,6 +24,10 @@ class User {
 
   getPicture(picture) {
     return this.picture;
+  }
+
+  getBlog() {
+    return this.blog;
   }
 
   removeFriend(user) {

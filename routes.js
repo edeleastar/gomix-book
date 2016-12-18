@@ -4,6 +4,7 @@ const Accounts = require('./controllers/accounts');
 const Home = require('./controllers/home');
 const Members = require('./controllers/members');
 const Profile = require('./controllers/profile');
+const BlogController = require('./controllers/blog');
 
 router.get('/', Accounts.index);
 router.get('/login', Accounts.login);
@@ -25,5 +26,9 @@ router.get('/members/follow/:id',  members.follow.bind(members));
 const profile = new Profile();
 router.get('/profile/:id', profile.index.bind(profile));
 router.post('/profile/:id/sendmessage', profile.sendMessage.bind(profile));
+
+const blogController = new BlogController();
+router.get('/blog', blogController.index.bind(blogController));
+router.post('/blog/createpost', blogController.createPost.bind(blogController));
 
 module.exports = router;
