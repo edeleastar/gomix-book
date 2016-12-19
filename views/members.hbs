@@ -11,10 +11,10 @@
     {{#each users}}
       <tr>
         <td>
-          {{firstName}} {{lastName}}
+          {{details.firstName}} {{details.lastName}}
         </td>
         <td>
-          <a href="members/follow/{{id}}"> (follow) </a>
+          <a href="members/follow/{{details.id}}"> (follow) </a>
         </td>
       </tr>
     {{/each}}

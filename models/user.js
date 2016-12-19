@@ -1,25 +1,22 @@
 const Blog = require('./blog');
+const Model = require('./model.js');
 
 class User {
-  constructor(userObj) {
-    this.id = userObj.id;
-    this.firstName = userObj.firstName;
-    this.lastName = userObj.lastName;
-    this.email = userObj.email;
-    this.password = userObj.password;
-
-    this.friends = [];
-    this.messages = [];
-    this.picture = null;
-    this.blog = new Blog(this);
+  constructor(details, datastore) {
+    this.details = details;
+    if (!this.details.id) {
+      this.details.id = uuid();
+    }
+    this.datastore = datastore;
   }
 
   addFriend(user) {
-    this.friends.push(user);
+    this.details.friends.push(user.details.id);
+    this.datastore.save();
   }
 
   getFriends() {
-    return this.friends;
+    return this.datastore.getUsersByIds(this.details.friends);
   }
 
   addPicture(picture) {
@@ -30,22 +27,30 @@ class User {
     return this.picture;
   }
 
-  getBlog() {
-    return this.blog;
+  addPost(post) {
+    this.details.blog.push(post);
+    this.datastore.save();
   }
 
-  removeFriend(user) {
-    this.friends = this.friends.filter(function (friend) {
-      return friend.email !== user.email;
+  getPosts() {
+    return this.details.blog;
+  }
+
+  removeFriend(friend) {
+    this.details.friends = this.details.friends.filter(function (id) {
+      return id !== friend.details.id;
     });
+
+    this.datastore.save();
   }
 
   addMessage(message) {
-    this.messages.push(message);
+    this.details.messages.push(message);
+    this.datastore.save();
   }
 
   getMessages() {
-    return this.messages;
+    return this.details.messages;
   }
 
   toString() {

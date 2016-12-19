@@ -1,4 +1,5 @@
 const datastore = require('../models/datastore');
+const User = require('../models/user');
 
 class Controller {
   currentUser(request) {

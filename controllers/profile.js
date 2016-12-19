@@ -22,7 +22,7 @@ class PublicProfile extends Controller {
     const messageText = request.body.messageText;
     const message = new Message(currentUser, profileUser, messageText);
     profileUser.addMessage(message);
-    response.redirect('/profile/' + profileUser.id);
+    response.redirect('/profile/' + profileUser.details.id);
   }
 }
 

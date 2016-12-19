@@ -1,10 +1,10 @@
 <section class="ui raised segment">
   <div class="ui small dividing header">Friends</div>
   <div class="ui list">
-    {{#each user.friends}}
+    {{#each friends}}
       <div class="ui item">
-        <a href="/profile/{{id}}"> {{firstName}} {{lastName}}</a>
-        <a href="/home/drop/{{id}}"> (drop) </a>
+        <a href="/profile/{{details.id}}"> {{details.firstName}} {{details.lastName}}</a>
+        <a href="/home/drop/{{details.id}}"> (drop) </a>
       </div>
     {{/each}}
   </div>

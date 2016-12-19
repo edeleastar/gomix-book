@@ -1,7 +1,7 @@
 {{> profilemenu }}
 
 <section class="ui raised segment">
-  <div class="ui dividing header"> {{user.firstName}} {{user.lastName}}'s Profile</div>
+  <div class="ui dividing header"> {{user.details.firstName}} {{user.details.lastName}}'s Profile</div>
   <section class="ui two column grid segment">
     <div class="row">
       <div class="column">
@@ -9,7 +9,7 @@
       </div>
       <div class="center aligned column">
         <div class="ui small image segment">
-          <img src="/home/getpicture/{{user.id}}"/>
+          <img src="/home/getpicture/{{user.details.id}}"/>
         </div>
        {{> composemessage }}
       </div>

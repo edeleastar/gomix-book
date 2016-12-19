@@ -31,15 +31,14 @@ class Accounts {
   }
 
   static register(request, response) {
-    const user = new User(request.body);
-    datastore.addUser(user);
+    datastore.addUser(request.body);
     response.redirect('/');
   }
 
   static authenticate(request, response) {
     const user = datastore.findUserByEmail(request.body.email);
     if (user) {
-      response.cookie('spacebook', user.email);
+      response.cookie('spacebook', user.details.email);
       response.redirect('/home');
     } else {
       response.redirect('/login');
