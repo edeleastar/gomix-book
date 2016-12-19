@@ -1,10 +1,9 @@
-const datastore = require('../models/datastore');
-const User = require('../models/user');
+const userstore = require('../models/userstore');
 
 class Controller {
   currentUser(request) {
     const userEmail = request.cookies.spacebook;
-    return datastore.findUserByEmail(userEmail);
+    return userstore.findByEmail(userEmail);
   }
 }
 

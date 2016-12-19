@@ -1,23 +1,27 @@
 'use strict';
 const Controller = require('./controller');
 const User = require('../models/user');
-const datastore = require('../models/datastore');
+const Friendship = require('../models/friendship');
+const userstore = require('../models/userstore');
+const friendstore = require('../models/friendstore');
 
 class Members extends Controller {
 
   index(request, response) {
+    const loggedInUser = this.currentUser(request);
     const viewData = {
       title: 'Spacebook Members',
-      user:  this.currentUser(request),
-      users: datastore.getUsers(),
+      user: loggedInUser,
+      members: userstore.findAll(),
     };
     response.render('members', viewData);
   }
 
   follow(request, response) {
     const currentUser = this.currentUser(request);
-    const user = datastore.findUserById(request.params.id);
-    currentUser.addFriend(user);
+    const friend = userstore.findById(request.params.id);
+    const friendship = new Friendship(currentUser, friend);
+    friendstore.add(friendship);
     response.redirect('/home');
   }
 }

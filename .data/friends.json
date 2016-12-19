@@ -1,0 +1,24 @@
+{
+  "friends": [
+    {
+      "src": "3",
+      "target": "45e31e60-c3da-4fcc-a9c1-0eece7bae7d2"
+    },
+    {
+      "src": "3",
+      "target": "45e31e60-c3da-4fcc-a9c1-0eece7bae7d2"
+    },
+    {
+      "src": "3",
+      "target": "2"
+    },
+    {
+      "src": "2",
+      "target": "3"
+    },
+    {
+      "src": "2",
+      "target": "18728419-3f1e-44f2-9728-db3496bf0520"
+    }
+  ]
+}

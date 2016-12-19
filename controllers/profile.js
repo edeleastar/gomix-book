@@ -2,27 +2,28 @@
 const Controller = require('./controller');
 const User = require('../models/user');
 const Message = require('../models/message');
-const datastore = require('../models/datastore');
+const userstore = require('../models/userstore');
+const messagestore = require('../models/messagestore');
 
 class PublicProfile extends Controller {
 
   index(request, response) {
-    const profileUser = datastore.findUserById(request.params.id);
+    const profileUser = userstore.findById(request.params.id);
     const viewData = {
       title: 'Profile Page',
       user: profileUser,
-      messages: profileUser.getMessages(),
+      messages: messagestore.getMessages(profileUser.id),
     };
     response.render('profile', viewData);
   }
 
   sendMessage(request, response) {
     const currentUser = this.currentUser(request);
-    const profileUser = datastore.findUserById(request.params.id);
+    const profileUser = userstore.findById(request.params.id);
     const messageText = request.body.messageText;
     const message = new Message(currentUser, profileUser, messageText);
-    profileUser.addMessage(message);
-    response.redirect('/profile/' + profileUser.details.id);
+    messagestore.add(message);
+    response.redirect('/profile/' + profileUser.id);
   }
 }
 

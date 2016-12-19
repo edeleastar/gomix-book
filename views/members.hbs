@@ -8,13 +8,13 @@
     </tr>
   </thead>
   <tbody>
-    {{#each users}}
+    {{#each members}}
       <tr>
         <td>
-          {{details.firstName}} {{details.lastName}}
+          {{firstName}} {{lastName}}
         </td>
         <td>
-          <a href="members/follow/{{details.id}}"> (follow) </a>
+          <a href="members/follow/{{id}}"> (follow) </a>
         </td>
       </tr>
     {{/each}}

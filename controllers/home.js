@@ -1,7 +1,9 @@
 'use strict';
 const Controller = require('./controller');
-const User = require('../models/user');
-const datastore = require('../models/datastore');
+const userstore = require('../models/userstore');
+const messagestore = require('../models/messagestore');
+const friendstore = require('../models/friendstore');
+const _ = require('lodash');
 
 class Home extends Controller {
 
@@ -10,16 +12,18 @@ class Home extends Controller {
     const viewData = {
       title: 'Spacebook Home',
       user: loggedInUser,
-      friends: loggedInUser.getFriends(),
-      messages: loggedInUser.getMessages(),
+      friends: friendstore.getFriends(loggedInUser.id),
+      messages: messagestore.getMessages(loggedInUser.id),
     };
     response.render('home', viewData);
   }
 
   drop(request, response) {
-    const currentUser = this.currentUser(request);
-    const user = datastore.findUserById(request.params.id);
-    currentUser.removeFriend(user);
+    const loggedInUser = this.currentUser(request);
+    const friend = userstore.findById(request.params.id);
+    //loggedInUser.unfriend(friend);
+    //userstore.save();
+    friendstore.unfriend(loggedInUser.id, friend.id);
     response.redirect('/home');
   }
 
@@ -31,7 +35,7 @@ class Home extends Controller {
   }
 
   getPicture(request, response) {
-    const user = datastore.findUserById(request.params.id);
+    const user = userstore.findById(request.params.id);
     const picture = user.getPicture();
     if (picture != null) {
       response.writeHead(200, {

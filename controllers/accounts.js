@@ -1,6 +1,7 @@
 'use strict';
 const User = require('../models/user');
-const datastore = require('../models/datastore');
+//const datastore = require('../models/datastore');
+const userstore = require('../models/userstore');
 
 class Accounts {
 
@@ -31,14 +32,15 @@ class Accounts {
   }
 
   static register(request, response) {
-    datastore.addUser(request.body);
+    const user = request.body;
+    userstore.add(user);
     response.redirect('/');
   }
 
   static authenticate(request, response) {
-    const user = datastore.findUserByEmail(request.body.email);
+    const user = userstore.findByEmail(request.body.email);
     if (user) {
-      response.cookie('spacebook', user.details.email);
+      response.cookie('spacebook', user.email);
       response.redirect('/home');
     } else {
       response.redirect('/login');

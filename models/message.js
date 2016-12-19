@@ -1,6 +1,8 @@
 class Message {
   constructor (from, to, messageText) {
-    this.from = from.details.firstName;
+    this.fromId = from.id;
+    this.toId = to.id;
+    this.from = from.firstName;
     this.messageText = messageText;
   }
 
