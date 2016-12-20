@@ -1,6 +1,4 @@
 'use strict';
-const User = require('../models/user');
-//const datastore = require('../models/datastore');
 const userstore = require('../models/userstore');
 
 class Accounts {

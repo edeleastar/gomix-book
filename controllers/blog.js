@@ -1,7 +1,5 @@
 'use strict';
 const Controller = require('./controller');
-const User = require('../models/user');
-const Post = require('../models/post');
 
 class BlogController extends Controller {
 

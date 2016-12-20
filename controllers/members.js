@@ -1,7 +1,5 @@
 'use strict';
 const Controller = require('./controller');
-const User = require('../models/user');
-const Friendship = require('../models/friendship');
 const userstore = require('../models/userstore');
 const friendstore = require('../models/friendstore');
 
@@ -18,9 +16,13 @@ class Members extends Controller {
   }
 
   follow(request, response) {
-    const currentUser = this.currentUser(request);
+    const loggedInUser = this.currentUser(request);
     const friend = userstore.findById(request.params.id);
-    const friendship = new Friendship(currentUser, friend);
+    //const friendship = new Friendship(currentUser, friend);
+    const friendship = {
+      src: loggedInUser.id,
+      target: friend.id,
+    };
     friendstore.add(friendship);
     response.redirect('/home');
   }

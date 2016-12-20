@@ -1,4 +1,3 @@
-const User = require('./user');
 const low = require('lowdb');
 const uuid = require('uuid');
 const fileAsync = require('lowdb/lib/file-async');

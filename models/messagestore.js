@@ -1,7 +1,4 @@
 const Store = require('./store');
-const Message = require('./message');
-const _ = require('lodash');
-const uuid = require('uuid');
 
 class MessageStore {
   constructor() {

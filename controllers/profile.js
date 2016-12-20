@@ -1,7 +1,5 @@
 'use strict';
 const Controller = require('./controller');
-const User = require('../models/user');
-const Message = require('../models/message');
 const userstore = require('../models/userstore');
 const messagestore = require('../models/messagestore');
 
@@ -18,10 +16,14 @@ class PublicProfile extends Controller {
   }
 
   sendMessage(request, response) {
-    const currentUser = this.currentUser(request);
+    const loggedInUser = this.currentUser(request);
     const profileUser = userstore.findById(request.params.id);
-    const messageText = request.body.messageText;
-    const message = new Message(currentUser, profileUser, messageText);
+    const message = {
+      fromId: loggedInUser.id,
+      toId: profileUser.id,
+      from: loggedInUser.firstName,
+      messageText: request.body.messageText,
+    };
     messagestore.add(message);
     response.redirect('/profile/' + profileUser.id);
   }

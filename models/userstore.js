@@ -1,5 +1,4 @@
 const Store = require('./store');
-const User = require('./user');
 const _ = require('lodash');
 const uuid = require('uuid');
 

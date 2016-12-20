@@ -21,8 +21,6 @@ class Home extends Controller {
   drop(request, response) {
     const loggedInUser = this.currentUser(request);
     const friend = userstore.findById(request.params.id);
-    //loggedInUser.unfriend(friend);
-    //userstore.save();
     friendstore.unfriend(loggedInUser.id, friend.id);
     response.redirect('/home');
   }
