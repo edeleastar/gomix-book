@@ -1,9 +1,10 @@
 'use strict';
-const Controller = require('./controller');
+
+const utils = require ('../utils/utils');
 const userstore = require('../models/userstore');
 const messagestore = require('../models/messagestore');
 
-class PublicProfile extends Controller {
+class PublicProfile {
 
   index(request, response) {
     const profileUser = userstore.findById(request.params.id);
@@ -16,7 +17,7 @@ class PublicProfile extends Controller {
   }
 
   sendMessage(request, response) {
-    const loggedInUser = this.currentUser(request);
+    const loggedInUser = utils.currentUser(request);
     const profileUser = userstore.findById(request.params.id);
     const message = {
       fromId: loggedInUser.id,

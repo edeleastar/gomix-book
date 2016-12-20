@@ -1,11 +1,12 @@
 'use strict';
-const Controller = require('./controller');
+
+const utils = require ('../utils/utils');
 const blogstore = require('../models/blogstore');
 
-class BlogController extends Controller {
+class BlogController {
 
   index(request, response) {
-    const loggedInUser = this.currentUser(request);
+    const loggedInUser = utils.currentUser(request);
     const userBlog = blogstore.getBlog(loggedInUser.id);
     const viewData = {
       title: 'Blog',
@@ -16,7 +17,7 @@ class BlogController extends Controller {
   }
 
   createPost(request, response) {
-    const loggedInUser = this.currentUser(request);
+    const loggedInUser = utils.currentUser(request);
     const post = {
       title: request.body.title,
       content: request.body.content,

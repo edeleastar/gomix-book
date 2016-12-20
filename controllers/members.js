@@ -1,12 +1,12 @@
 'use strict';
-const Controller = require('./controller');
+const utils = require ('../utils/utils');
 const userstore = require('../models/userstore');
 const friendstore = require('../models/friendstore');
 
-class Members extends Controller {
+class Members {
 
   index(request, response) {
-    const loggedInUser = this.currentUser(request);
+    const loggedInUser = utils.currentUser(request);
     const viewData = {
       title: 'Spacebook Members',
       user: loggedInUser,
@@ -16,7 +16,7 @@ class Members extends Controller {
   }
 
   follow(request, response) {
-    const loggedInUser = this.currentUser(request);
+    const loggedInUser = utils.currentUser(request);
     const friend = userstore.findById(request.params.id);
     //const friendship = new Friendship(currentUser, friend);
     const friendship = {

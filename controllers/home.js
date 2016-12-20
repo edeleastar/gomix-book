@@ -1,15 +1,15 @@
 'use strict';
-const Controller = require('./controller');
+
+const utils = require ('../utils/utils');
 const userstore = require('../models/userstore');
 const messagestore = require('../models/messagestore');
 const friendstore = require('../models/friendstore');
 const picturestore = require('../models/picturestore');
-const _ = require('lodash');
 
-class Home extends Controller {
 
+class Home {
   index(request, response) {
-    const loggedInUser = this.currentUser(request);
+    const loggedInUser = utils.currentUser(request);
     const viewData = {
       title: 'Spacebook Home',
       user: loggedInUser,
@@ -20,17 +20,16 @@ class Home extends Controller {
   }
 
   drop(request, response) {
-    const loggedInUser = this.currentUser(request);
+    const loggedInUser = utils.currentUser(request);
     const friend = userstore.findById(request.params.id);
     friendstore.unfriend(loggedInUser.id, friend.id);
     response.redirect('/home');
   }
 
   uploadPicture(request, response) {
-    const loggedInUser = this.currentUser(request);
+    const loggedInUser = utils.currentUser(request);
     const picture  = request.files.picture;
     loggedInUser.profilePicture = picture.name;
-    const currentUser = this.currentUser(request);
     picturestore.addPicture(loggedInUser.id, picture);
     response.redirect('/home');
   }
@@ -41,15 +40,6 @@ class Home extends Controller {
       const picture = picturestore.getPicture(user.id, user.profilePicture);
       response.sendFile(picture);
     }
-    // if (picture != null) {
-    //   response.writeHead(200, {
-    //     'Content-Type': picture.mimetype,
-    //     'Content-Length': picture.data.length,
-    //   });
-    //   response.end(new Buffer(picture.data, 'binary'));
-    // } else {
-    //   response.end();
-    // }
   }
 }
 
