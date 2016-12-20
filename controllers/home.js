@@ -29,6 +29,7 @@ class Home extends Controller {
   uploadPicture(request, response) {
     const loggedInUser = this.currentUser(request);
     const picture  = request.files.picture;
+    loggedInUser.profilePicture = picture.name;
     const currentUser = this.currentUser(request);
     picturestore.addPicture(loggedInUser.id, picture);
     response.redirect('/home');
@@ -36,16 +37,19 @@ class Home extends Controller {
 
   getPicture(request, response) {
     const user = userstore.findById(request.params.id);
-    const picture = picturestore.getPicture(user.id);
-    if (picture != null) {
-      response.writeHead(200, {
-        'Content-Type': picture.mimetype,
-        'Content-Length': picture.data.length,
-      });
-      response.end(new Buffer(picture.data, 'binary'));
-    } else {
-      response.end();
+    if (user.profilePicture) {
+      const picture = picturestore.getPicture(user.id, user.profilePicture);
+      response.sendFile(picture);
     }
+    // if (picture != null) {
+    //   response.writeHead(200, {
+    //     'Content-Type': picture.mimetype,
+    //     'Content-Length': picture.data.length,
+    //   });
+    //   response.end(new Buffer(picture.data, 'binary'));
+    // } else {
+    //   response.end();
+    // }
   }
 }
 

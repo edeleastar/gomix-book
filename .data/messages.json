@@ -95,6 +95,12 @@
       "toId": "2",
       "from": "Homer",
       "messageText": "asdfdf"
+    },
+    {
+      "fromId": "1",
+      "toId": "2",
+      "from": "Homer",
+      "messageText": "awdfasdf"
     }
   ]
 }
