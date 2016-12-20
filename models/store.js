@@ -9,9 +9,12 @@ class Store {
     this.db = low(file, { storage: fileAsync, });
     this.db.defaults(defaults).value();
     this.objs = this.db.get(name);
+    console.log ('Loading ' + name);
+    console.log ('------------------');
     for (let o of this.objs) {
       console.log(o);
     }
+    console.log ('------------------');
   }
 
   add(obj) {

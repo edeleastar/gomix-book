@@ -3,6 +3,7 @@ const Controller = require('./controller');
 const userstore = require('../models/userstore');
 const messagestore = require('../models/messagestore');
 const friendstore = require('../models/friendstore');
+const picturestore = require('../models/picturestore');
 const _ = require('lodash');
 
 class Home extends Controller {
@@ -26,15 +27,16 @@ class Home extends Controller {
   }
 
   uploadPicture(request, response) {
+    const loggedInUser = this.currentUser(request);
     const picture  = request.files.picture;
     const currentUser = this.currentUser(request);
-    currentUser.addPicture(picture);
+    picturestore.addPicture(loggedInUser.id, picture);
     response.redirect('/home');
   }
 
   getPicture(request, response) {
     const user = userstore.findById(request.params.id);
-    const picture = user.getPicture();
+    const picture = picturestore.getPicture(user.id);
     if (picture != null) {
       response.writeHead(200, {
         'Content-Type': picture.mimetype,
