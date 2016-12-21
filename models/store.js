@@ -1,7 +1,10 @@
+'use strict';
+
 const low = require('lowdb');
 const uuid = require('uuid');
 const fileAsync = require('lowdb/lib/file-async');
 const _ = require('lodash');
+const logger = require('../utils/logger');
 
 class Store {
   constructor(file, name, defaults) {
@@ -9,12 +12,10 @@ class Store {
     this.db = low(file, { storage: fileAsync, });
     this.db.defaults(defaults).value();
     this.objs = this.db.get(name);
-    console.log ('Loading ' + name);
-    console.log ('------------------');
+    logger.debug(`Loading  ${name}`);
     for (let o of this.objs) {
-      console.log(o);
+      logger.debug(o);
     }
-    console.log ('------------------');
   }
 
   add(obj) {

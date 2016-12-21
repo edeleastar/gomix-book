@@ -1,5 +1,6 @@
 'use strict';
 const userstore = require('../models/userstore');
+const logger = require('../utils/logger');
 
 class Accounts {
 
@@ -32,6 +33,7 @@ class Accounts {
   static register(request, response) {
     const user = request.body;
     userstore.add(user);
+    logger.info(`registering ${user.email}`);
     response.redirect('/');
   }
 
@@ -39,6 +41,7 @@ class Accounts {
     const user = userstore.findByEmail(request.body.email);
     if (user) {
       response.cookie('spacebook', user.email);
+      logger.info(`logging in ${user.email}`);
       response.redirect('/home');
     } else {
       response.redirect('/login');
