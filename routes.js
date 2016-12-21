@@ -6,6 +6,7 @@ const Home = require('./controllers/home');
 const Members = require('./controllers/members');
 const Profile = require('./controllers/profile');
 const BlogController = require('./controllers/blog');
+const Reset = require('./utils/reset');
 
 router.get('/', Accounts.index);
 router.get('/login', Accounts.login);
@@ -31,5 +32,9 @@ router.post('/profile/:id/sendmessage', profile.sendMessage.bind(profile));
 const blogController = new BlogController();
 router.get('/blog', blogController.index.bind(blogController));
 router.post('/blog/createpost', blogController.createPost.bind(blogController));
+
+const reset = new Reset();
+router.get('/reset', reset.index);
+router.get('/reset/removeall', reset.removeAll);
 
 module.exports = router;

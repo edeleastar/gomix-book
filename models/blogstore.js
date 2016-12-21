@@ -20,7 +20,7 @@ class BlogStore {
   }
 
   addBlog(blog) {
-    logger.debug(`adding a new blog for user ${id}`);
+    logger.debug(`adding a new blog`);
     this.store.add(blog);
   }
 
@@ -34,6 +34,10 @@ class BlogStore {
     const blog = this.getBlog(id);
     logger.debug(`retrieving post for user ${id}`, blog.posts);
     return blog.posts;
+  }
+
+  drop() {
+    this.store.drop();
   }
 }
 

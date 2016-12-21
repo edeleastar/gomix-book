@@ -22,6 +22,10 @@ class FriendStore {
   unfriend(src, target) {
     this.store.remove({ src: src, target: target });
   }
+
+  drop() {
+    this.store.drop();
+  }
 }
 
 module.exports = new FriendStore();

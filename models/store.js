@@ -8,6 +8,7 @@ const logger = require('../utils/logger');
 
 class Store {
   constructor(file, name, defaults) {
+    this.defauts = defaults;
     this.name = name;
     this.db = low(file, { storage: fileAsync, });
     this.db.defaults(defaults).value();
@@ -41,6 +42,10 @@ class Store {
   findOneBy(filter) {
     const results = this.db.get(this.name).filter(filter).value();
     return results[0];
+  }
+
+  drop() {
+    this.db.get(this.name).remove().value();
   }
 
   save() {

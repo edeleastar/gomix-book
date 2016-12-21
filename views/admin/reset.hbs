@@ -1,0 +1,17 @@
+{{> profilemenu }}
+
+<div class="ui inverted segment">
+  <div class="ui inverted relaxed divided list">
+  {{#each dataFiles}}
+    <div class="item">
+      <div class="content">
+        {{this}}
+      </div>
+    </div>
+  {{/each}}
+  </div>
+</div>
+
+<a href="/reset/removeall" class="ui primary button">
+  Delete All
+</a>

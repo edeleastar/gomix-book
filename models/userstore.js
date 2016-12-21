@@ -31,6 +31,11 @@ class UserStore {
     user.id = uuid();
     this.store.add(user);
   }
+
+  drop() {
+    this.store.drop();
+  }
+
 }
 
 module.exports = new UserStore();

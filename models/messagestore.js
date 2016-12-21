@@ -12,6 +12,10 @@ class MessageStore {
   add(message) {
     this.store.add(message);
   }
+
+  drop() {
+    this.store.drop();
+  }
 }
 
 module.exports = new MessageStore();
