@@ -6,7 +6,6 @@ const fileUpload = require('express-fileupload');
 const cookieParser = require('cookie-parser');
 const exphbs = require('express-handlebars');
 const logger = require('./utils/logger');
-logger.level = process.env.debugLevel;
 
 const routes = require('./routes');
 
