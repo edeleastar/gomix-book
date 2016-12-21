@@ -1,9 +1,9 @@
 'use strict';
 
-const utils = require ('../utils/utils');
+const utils = require('../utils/utils');
 const blogstore = require('../models/blogstore');
 
-class BlogController {
+const blogController = {
 
   index(request, response) {
     const loggedInUser = utils.currentUser(request);
@@ -14,7 +14,7 @@ class BlogController {
       posts: blogstore.getPosts(loggedInUser.id),
     };
     response.render('blog', viewData);
-  }
+  },
 
   createPost(request, response) {
     const loggedInUser = utils.currentUser(request);
@@ -27,4 +27,4 @@ class BlogController {
   }
 }
 
-module.exports = BlogController;
+module.exports = blogController;

@@ -3,7 +3,7 @@ const utils = require ('../utils/utils');
 const userstore = require('../models/userstore');
 const friendstore = require('../models/friendstore');
 
-class Members {
+const members = {
 
   index(request, response) {
     const loggedInUser = utils.currentUser(request);
@@ -13,7 +13,7 @@ class Members {
       members: userstore.findAll(),
     };
     response.render('members', viewData);
-  }
+  },
 
   follow(request, response) {
     const loggedInUser = utils.currentUser(request);
@@ -28,4 +28,4 @@ class Members {
   }
 }
 
-module.exports = Members;
+module.exports = members;

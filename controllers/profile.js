@@ -1,10 +1,10 @@
 'use strict';
 
-const utils = require ('../utils/utils');
+const utils = require('../utils/utils');
 const userstore = require('../models/userstore');
 const messagestore = require('../models/messagestore');
 
-class PublicProfile {
+const profile = {
 
   index(request, response) {
     const profileUser = userstore.findById(request.params.id);
@@ -14,7 +14,7 @@ class PublicProfile {
       messages: messagestore.getMessages(profileUser.id),
     };
     response.render('profile', viewData);
-  }
+  },
 
   sendMessage(request, response) {
     const loggedInUser = utils.currentUser(request);
@@ -30,4 +30,4 @@ class PublicProfile {
   }
 }
 
-module.exports = PublicProfile;
+module.exports = profile;

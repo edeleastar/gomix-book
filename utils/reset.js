@@ -7,7 +7,7 @@ const messagestore = require('../models/messagestore');
 const friendstore = require('../models/friendstore');
 const blogstore = require('../models/blogstore');
 
-class Reset {
+const reset = {
 
   index(request, response) {
     const viewData = {
@@ -15,7 +15,7 @@ class Reset {
       dataFiles: sh.find('.data'),
     };
     response.render('admin/reset', viewData);
-  }
+  },
 
   removeAll(request, response) {
     sh.rm('-rf', '.data/pictures/*');
@@ -28,6 +28,6 @@ class Reset {
     });
     response.redirect('/logout');
   }
-}
+};
 
-module.exports = Reset;
+module.exports = reset;
