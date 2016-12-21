@@ -6,7 +6,8 @@ const logger = new (winston.Logger)({
 
 logger.level = 'debug';
 
-if (process.env.logLevel) {
-  logger.level = logLevel;
+if (process.env.LEVEL) {
+  logger.level = process.env.LEVEL;
 }
+
 module.exports = logger;
